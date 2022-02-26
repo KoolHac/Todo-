@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        .form-control{
+        max-width: 1x
+        }
+    </style>
+    <meta charset="UTF-8">
+    <title>Todo</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <a href="/todo/home">Home</a>
+    <br><br>
+    <div class="mb-3">
+        <form action="/todo/" method="post">
+    {% csrf_token %}
+    {{ form }}
+    <button type="submit" class="btn btn-primary" style="margin-top:20px">Add</button>
+  </form>
+    </div>
+</head>
+<br><br>
+<body>
+{% if task %}
+{% for task in task %}
+{% if task.complete %}
+<p><strike> {{ task.title }} </strike> | <a href="/todo/{{ task.id }}/update">Update/Complete</a> <a href="/todo/{{ task.id }}/delete">Delete</a></p>
+{% else %}
+<p>{{ task.title }}| <a href="/todo/{{ task.id }}/update">Update/Complete</a> <a href="/todo/{{ task.id }}/delete">Delete</a></p>
+{% endif %}
+{% endfor %}
+{% else %}
+<h1><strong>No tasks are added</strong></h1>
+{% endif %}
+</body>
+</html>

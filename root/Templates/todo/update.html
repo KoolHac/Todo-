@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Update {{ task.title }}</title>
+</head>
+<body>
+<form action="/todo/{{ task.id }}/update" method="post">
+    {% csrf_token %}
+    {{ form }}
+    {{ task.complete }}
+    <button type="submit">Update</button>
+</form>
+</body>
+</html>

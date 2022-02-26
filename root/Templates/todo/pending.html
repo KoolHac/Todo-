@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Pending Tasks</title>
+</head>
+<body>
+{% if task %}
+{% for task in task %}
+{% if task.complete %}
+<h1>No pending Tasks</h1>
+{% else %}
+{{ task.title }} |<a href="/todo/{{ task.id }}/update">Update/complete</a> <a href="/todo/{{ task.id }}/delete">Delete</a><br><br> <p></p>
+{% endif %}
+{% endfor %}
+{% else %}
+<h1>Todo list is empty</h1>
+{% endif %}
+</body>
+</html>

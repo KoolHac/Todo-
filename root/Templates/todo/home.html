@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+  <h1 align="center"> Hello {{ request.user }}</h1>
+    <div align="right">
+    <form action="/accounts/logout/" method="post" > {% csrf_token %}<button type="submit">Logout</button> </form>
+    </div>
+        </head>
+<body>
+<div align="center">
+<a href="/todo/pending/">Pending tasks</a> <a href="/todo/">Add task </a>
+</div>
+<br><br>
+{% if task %}
+{% for task in task %}
+{% if task.complete %}
+<h1>No pending tasks</h1>
+{% else %}
+<p>{{ task.title }} | <a href="/todo/{{ task.id }}/update">Update/complete</a><a href="/todo/{{ task.id }}/delete">Delete</a></p>
+{% endif %}
+{% endfor %}
+{% else %}
+<h1><strong>Your Todo List is empty</strong></h1>
+</body>
+{% endif %}
+</html>
